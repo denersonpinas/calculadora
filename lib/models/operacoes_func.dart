@@ -11,7 +11,7 @@ class OperacoesFunc {
   }
 
   dynamic divisaoValor(dynamic dv_parmOne, dynamic dv_parmTwo) {
-    return dv_parmOne / dv_parmTwo;
+    if (dv_parmTwo != 0) return dv_parmOne / dv_parmTwo;
   }
 
   dynamic multiplicacaoValor(dynamic mv_parmOne, dynamic mv_parmTwo) {

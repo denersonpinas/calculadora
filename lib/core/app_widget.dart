@@ -1,4 +1,4 @@
-import 'package:calculadora/home/home_page.dart';
+import 'package:calculadora/imc/imc_page.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
@@ -6,7 +6,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Calculadora",
-      home: HomePage(),
+      home: ImcPage(),
     );
   }
 }

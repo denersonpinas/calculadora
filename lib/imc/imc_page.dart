@@ -1,4 +1,5 @@
 import 'package:calculadora/core/app_colors.dart';
+import 'package:calculadora/core/core.dart';
 import 'package:calculadora/home/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,8 @@ class _ImcPageState extends State<ImcPage> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   
+  dynamic icone = Icons.calculate_outlined;
+  dynamic cor = AppColors.purple;
   String _infoText = "Informe seus dados!";
 
   // "_" antes do nome da função indica que ela é privada
@@ -24,28 +27,39 @@ class _ImcPageState extends State<ImcPage> {
     setState(() {
       _infoText = "Informe seus dados!";
       _formKey = GlobalKey<FormState>(); 
+      icone = Icons.calculate_outlined;
+      cor = AppColors.purple;
     });
   }
 
   void _calculate(){
-    print("AQUi");
     setState(() {
       // "double.parse" transforma o text em um double
-      double weight = double.parse(weightController.text);
+      double weight = double.parse(weightController.text);      
       double height = double.parse(heightController.text) / 100;
       double imc = weight / (height * height);
       if(imc < 18.6) {
         _infoText = "Abaixo do Peso (${imc.toStringAsPrecision(4)})";
+        icone = Icons.thumb_down;
       } else if(imc >= 18.6 && imc < 24.9) {
         _infoText = "Peso Ideal (${imc.toStringAsPrecision(4)})";
+        icone = Icons.thumb_up;
       } else if(imc >= 24.9 && imc < 29.9) {
         _infoText = "Levemente Acima do Peso (${imc.toStringAsPrecision(4)})";
+        icone = Icons.circle;
+        cor = AppColors.yellow;
       } else if(imc >= 29.9 && imc < 34.9) {
         _infoText = "Obesidade Grau I (${imc.toStringAsPrecision(4)})";
+        icone = Icons.circle;
+        cor = AppColors.orange;
       } else if(imc >= 34.9 && imc < 39.9) {
         _infoText = "Obesidade Grau II (${imc.toStringAsPrecision(4)})";
+        icone = Icons.circle;
+        cor = AppColors.red;
       } else if(imc >= 40) {
         _infoText = "Obesidade Grau III (${imc.toStringAsPrecision(4)})";
+        icone = Icons.circle;
+        cor = AppColors.pink;
       }
     });
   }
@@ -99,10 +113,13 @@ class _ImcPageState extends State<ImcPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Icon(
-                Icons.person_outline, 
-                size: 120.0, 
-                color: AppColors.purple,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Icon(
+                  icone, 
+                  size: 100.0, 
+                  color: cor,
+                ),
               ),
               TextFormField(keyboardType: TextInputType.number,
                 decoration: InputDecoration(
